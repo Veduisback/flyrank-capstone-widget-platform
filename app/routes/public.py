@@ -45,9 +45,9 @@ def widget_config(widget_id: UUID):
 def widget_script():
     script = """
 (function () {
-    const scriptElement = document.currentScript;
+    const scriptElement = document.currentScript || document.querySelector('script[src*="widget.v1.js"]');
 
-    const params = new URLSearchParams(window.location.search);
+    const params = new URL(scriptElement.src).searchParams;
     const widgetId = params.get("id");
 
     if (!widgetId) {
