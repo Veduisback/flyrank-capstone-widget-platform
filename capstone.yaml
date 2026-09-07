@@ -2,7 +2,7 @@ name: flyrank-capstone-widget-platform
 
 run: docker compose up --build
 
-seed: python scripts/seed.py
+seed: docker compose exec api python -m scripts.seed
 
 test: pytest -q
 
@@ -13,6 +13,7 @@ endpoints:
   - POST /auth/login
   - POST /widgets
   - GET /widgets/{id}
+  - PUT /widgets/{id}
   - DELETE /widgets/{id}
   - GET /widgets/{id}/config
   - GET /widget.v1.js
